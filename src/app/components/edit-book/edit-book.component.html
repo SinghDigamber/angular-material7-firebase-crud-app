@@ -1,0 +1,107 @@
+<!-- Title group  -->
+<div class="title-group">
+  <h1 class="mat-h1">Edit Book</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<!-- Book form -->
+<div class="inner-wrapper">
+  <form [formGroup]="editBookForm" (ngSubmit)="updateBook()" novalidate>
+    <mat-card>
+      <div class="controlers-wrapper">
+        <!-- Book name -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Book name" formControlName="book_name">
+          <mat-error *ngIf="handleError('book_name', 'required')">
+            You must provide a<strong>book name</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- ISBN -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="ISBN-10" formControlName="isbn_10" pattern="[0-9]*" minlength="10"
+            maxlength="10">
+          <mat-error *ngIf="handleError('isbn_10', 'required')">
+            You must provide a <strong>10 digit ISBN</strong>
+          </mat-error>
+          <mat-error *ngIf="handleError('isbn_10', 'pattern')">
+            Only numbers are allowed
+          </mat-error>
+          <mat-error *ngIf="handleError('isbn_10', 'minlength')">
+            Your <strong>ISBN</strong> must be 10 digit
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Author name -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Author name" formControlName="author_name">
+          <mat-error *ngIf="handleError('author_name', 'required')">
+            You must provide an <strong>author name</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Publication date -->
+        <mat-form-field>
+          <input matInput readonly [matDatepicker]="picker" placeholder="Publication date"
+            formControlName="publication_date" (dateChange)="formatDate($event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="handleError('publication_date', 'required')">
+            Publication date is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <mat-card>
+      <div class="controlers-wrapper">
+        <!-- Book binding -->
+        <mat-form-field>
+          <mat-label>Binding type</mat-label>
+          <mat-select [(value)]="selected" formControlName="binding_type">
+            <mat-option [value]="bindingType" *ngFor="let bindingType of BindingType">{{bindingType}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="handleError('binding_type', 'required')">
+            Binding type is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Book stock -->
+        <div class="misc-bottom-padding">
+          <mat-label>Available in stock: </mat-label>
+          <mat-radio-group aria-label="Select an option" formControlName="in_stock">
+            <mat-radio-button value="Yes">Yes</mat-radio-button>
+            <mat-radio-button value="No">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <!-- Add languages -->
+        <mat-form-field class="multiple-items">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let lang of languageArray" [selectable]="selectable" [removable]="removable"
+              (removed)="remove(lang)">
+              {{lang.name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Add languages" [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <i class="material-icons tooltip-info" matTooltip="Enter item name and press enter to add multiple items">
+            info
+          </i>
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <!-- Submit & Reset -->
+    <mat-card>
+      <div class="full-wrapper button-wrapper">
+        <div class="button-wrapper">
+          <button mat-flat-button color="warn">Update</button>
+          <button mat-flat-button color="war" type="button" (click)="goBack()">Go Back</button>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>

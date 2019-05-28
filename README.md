@@ -1,27 +1,23 @@
-# AngularMaterial7FirebaseCrudApp
+# angular-material7-firebase-crud-app
+Create Book inventory CRUD web app with Angular 7 framework using Angular Material 7, Firebase (AngularFire2) real-time NoSQL database.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
+A book inventory CRUD web app in this app a user can do the following things.
+- Add a book
+- Read a book
+- Edit a book
+- Delete a book
 
-## Development server
+Step by step article on [Create Angular 7 Firebase 6 CRUD Web App with Angular Material 7](https://www.positronx.io/create-angular-7-firebase-crud-app-with-angular-material-7/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## How to run the app?
+- Run `npm install` to install required dependencies.
+- Run `ng serve` to run the angular app
 
-## Code scaffolding
+## Built with
+- Node 10.15.0
+- Angular 7.2.3
+- Firebase 6.0.2
+- Angular Material 7.3.7
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+[Visit positronX.io to learn more about full stack software development](https://www.positronx.io/)
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
